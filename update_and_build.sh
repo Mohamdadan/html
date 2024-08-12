@@ -1,5 +1,5 @@
 #!/bin/bash
-image=mohamedadan4323/pro1:v3
+image=mohamedadan4323/pro1:v4
 # Navigate to the repository directory
 cd /root/repos/html || { echo "Failed to change directory to /root/repos/html"; exit 1; }
 
@@ -10,6 +10,6 @@ git pull origin || { echo "Failed to pull from origin"; exit 1; }
 # Build the Docker image
 docker build -t $image .  
 
-docker run -d -p 80:80  $image
+docker run -d -p 80:80 --name $image   $image
 
 echo "Script completed successfully"
