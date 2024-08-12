@@ -1,5 +1,5 @@
 #!/bin/bash
-image="proj:v6.4"
+image="mohamedadan4323/proj:v6.4"
 containername="LMS"
 # Navigate to the repository directory
 cd /root/repos/html || { echo "Failed to change directory to /root/repos/html"; exit 1; }
