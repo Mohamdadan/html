@@ -1,5 +1,5 @@
 #!/bin/bash
-image="mohamedadan4323/pro1:v5"
+image="mohamedadan4323/pro1:v6"
 # Navigate to the repository directory
 cd /root/repos/html || { echo "Failed to change directory to /root/repos/html"; exit 1; }
 
