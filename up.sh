@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Variables
 PG_HOST="localhost"                # Change this to your PostgreSQL server host
 PG_PORT="5432"                     # Change this to your PostgreSQL server port
@@ -22,9 +21,8 @@ check_postgres() {
 promote_standby() {
     echo "Promoting standby to primary..."
 
-    # Execute the pg_promote function using psql
-    PSQL_COMMAND="SELECT pg_promote();"
-    echo $PSQL_COMMAND | psql -h $PG_HOST -p $PG_PORT -U $PG_USER -d $PG_DB >> $PROMOTE_LOG 2>&1
+    # Execute the pg_promote function using psql as the postgres user
+    sudo -u postgres psql -h $PG_HOST -p $PG_PORT -U $PG_USER -d $PG_DB -c "SELECT pg_promote();" >> $PROMOTE_LOG 2>&1
 
     if [ $? -eq 0 ]; then
         echo "Promotion successful."
@@ -42,7 +40,7 @@ check_postgres
 # Promote standby to primary
 promote_standby
 
-# Restart PostgreSQL service
+# Restart PostgreSQL service (as root)
 echo "Restarting PostgreSQL service..."
 systemctl restart postgresql
 
