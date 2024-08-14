@@ -22,7 +22,7 @@ promote_standby() {
     echo "Promoting standby to primary..."
 
     # Execute the pg_promote function using psql as the postgres user
-    sudo -u postgres psql -h $PG_HOST -p $PG_PORT -U $PG_USER -d $PG_DB -c "SELECT pg_promote();" >> $PROMOTE_LOG 2>&1
+    sudo -u postgres psql -c "SELECT pg_promote();" >> $PROMOTE_LOG 2>&1
 
     if [ $? -eq 0 ]; then
         echo "Promotion successful."
